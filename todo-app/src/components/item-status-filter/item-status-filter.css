@@ -1,6 +1,13 @@
 .btn-group {
-  border: 1px solid steelblue;
+  display: flex;
+  gap: 3px;
+  border-radius: 0;
 }
+
 .top-panel {
   gap: 3px;
+}
+
+.btn {
+  border-radius: 0;
 }
