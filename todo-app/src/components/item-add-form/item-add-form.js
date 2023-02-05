@@ -26,6 +26,7 @@ export default class ItemAddForm extends React.Component {
   };
 
   render() {
+   
     return (
       <form className='item-add-form d-flex' onSubmit={this.onSubmit}>
         <input

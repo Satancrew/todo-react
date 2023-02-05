@@ -21,7 +21,7 @@ export default class App extends React.Component {
         this.createTodoItem('Sleep'),
       ],
       term: '',
-      filter: 'active',
+      filter: 'all',
     };
   }
 
@@ -112,18 +112,25 @@ export default class App extends React.Component {
   onSearchChange = term => {
     this.setState({ term });
   };
+  
+  onFilterChange = filter => {
+    this.setState({ filter });
+  };
 
   render() {
-    const { todoData, term } = this.state;
+    const { todoData, term, filter } = this.state;
     const doneCount = todoData.filter(el => el.done).length;
     const notDoneCount = todoData.filter(el => !el.done).length;
-    const visibleItems = this.search(todoData, term);
+    const visibleItems = this.checkStatus(this.search(todoData, term), filter);
     return (
       <div className='todo-app'>
         <AppHeader toDo={notDoneCount} done={doneCount} />
         <div className='top-panel d-flex'>
           <SearchPanel onSearchChange={this.onSearchChange} />
-          <ItemStatusFilter onChecked={this.checkStatus} />
+          <ItemStatusFilter
+            filter={filter}
+            onFilterChange={this.onFilterChange}
+          />
         </div>
         <TodoList
           todos={visibleItems}
